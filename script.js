@@ -1,21 +1,15 @@
 const gameBoard = (() => {
     var gridContainer = document.createElement("div");
-    gridContainer.style.display = "grid";
-    gridContainer.style.gridTemplateColumns = "repeat(3, 1fr)";
-    gridContainer.style.gridTemplateRows = "repeat(3, 1fr)";
-    gridContainer.style.height = "90vh";
-    gridContainer.style.width = "90vh";
     gridContainer.id = "gridContainer"
+    
     // Create an array of letters for the rows and columns
     var letters = ["A", "B", "C"];
     for (var i = 0; i < 3; i++) {
         for (var j = 0; j < 3; j++) {
             var cell = document.createElement("div");
-            cell.style.border = "4px solid black";
-            cell.style.padding = "10px";
-            cell.textContent = letters[i] + (j + 1);
             cell.id = letters[i] + (j + 1);
             cell.className = "gridCell";
+            cell.textContent = letters[i] + (j + 1);
             gridContainer.appendChild(cell);
             }
     }
@@ -24,4 +18,24 @@ const gameBoard = (() => {
 
 )();
 
-console.log(letters)
+const playerController = (
+    () => {
+        var playerOneTurn = true;
+        var playerTwoTurn = false;
+        alert('Player 1- Your Turn!')
+        let cells = document.getElementsByClassName("gridCell");
+        for (let i = 0; i < cells.length; i++) {
+            cells[i].addEventListener("mousedown", (e) => {
+                var cell = cells[i];
+                if (cell.textContent === "O" || cell.textContent === "X") {
+                    // Do nothing
+                } else {
+                    cell.classList.add("flash"); // Add the "flash" class
+                    cell.textContent = "X";
+                    cell.style.fontSize = "6.5rem";
+                    setTimeout(() => {
+                        cell.classList.remove("flash"); // Remove the "flash" class
+                    }, 200); // Adjust the duration (in milliseconds) as needed
+                }
+            })}}
+)()
