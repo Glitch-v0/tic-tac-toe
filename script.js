@@ -3,8 +3,8 @@ const gameBoard = (() => {
     gridContainer.style.display = "grid";
     gridContainer.style.gridTemplateColumns = "repeat(3, 1fr)";
     gridContainer.style.gridTemplateRows = "repeat(3, 1fr)";
-    gridContainer.style.height = "80vh";
-    gridContainer.style.width = "80vh";
+    gridContainer.style.height = "90vh";
+    gridContainer.style.width = "90vh";
     gridContainer.id = "gridContainer"
     // Create an array of letters for the rows and columns
     var letters = ["A", "B", "C"];
