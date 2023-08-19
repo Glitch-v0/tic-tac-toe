@@ -34,15 +34,10 @@ const playerController = (
         var winOptions = [];
         const checkWin = (mark) => {
             console.log("Checking for win...")
-            for (const option of winOptions) {
-                if (option.every(cell => cell.textContent === mark)) {
-                    option.forEach(cell => {
-                        cell.style.backgroundColor = "var(--flash-color)"; // Highlight the winning cells
-                    });
-                    console.log("Player with", mark, "has won on", option[0].classList);
-                    canClick = false;
+            const resetCells = (message) => {
+                canClick = false;
                     setTimeout(() => {
-                        alert("Player " + (mark == "X" ? "One" : "Two") + " Wins! Player " + (mark == "X" ? "Two" : "One") + " starts now.");
+                        alert(`${message}`);
                         for(cell of cells){
                             cell.textContent = "";
                             cell.style.backgroundColor = "white";
@@ -50,10 +45,24 @@ const playerController = (
                         }
                         canClick = true;
                     }, 400);
+            }
+            for (const option of winOptions) {
+                if (option.every(cell => cell.textContent === mark)) {
+                    option.forEach(cell => {
+                        cell.style.backgroundColor = "var(--flash-color)"; // Highlight the winning cells
+                    });
+                    console.log("Player with", mark, "has won on", option[0].classList);
+                    canClick = false;
+                    resetCells("Player " + (mark == "X" ? "One" : "Two") + " Wins! Player " + (mark == "X" ? "Two" : "One") + " starts now.")
                     break
+                } else {
+                    console.log('No win yet.')
                 }
             }
-        }
+            if (Array.from(cells).every(cell => cell.textContent != "")){
+                resetCells("It's a draw! Player " + (playerOneTurn == true ? "Two" : "One") + " starts the next round.");
+            } 
+            }
         for (let i = 0; i < cells.length; i++) {
             //Add row win area
             if(cells[i].id.includes("A")){
