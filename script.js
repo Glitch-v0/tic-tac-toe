@@ -8,7 +8,7 @@ const gameBoard = (() => {
             var cell = document.createElement("div");
             cell.id = letters[i] + (j + 1);
             cell.className = "gridCell";
-            cell.textContent = letters[i] + (j + 1);
+            cell.textContent = "";
             gridContainer.appendChild(cell);
             }
     }
@@ -42,7 +42,7 @@ const playerController = (
                     setTimeout(() => {
                         alert("Player " + (mark == "X" ? "One" : "Two") + " Wins! Player " + (mark == "X" ? "Two" : "One") + " starts now.");
                         for(cell of cells){
-                            cell.textContent = cell.id;
+                            cell.textContent = "";
                             cell.style.backgroundColor = "white";
                             cell.style.fontSize = "clamp(2rem, 5vw, 3.5rem)"
                         }
@@ -53,39 +53,39 @@ const playerController = (
         }
         for (let i = 0; i < cells.length; i++) {
             //Add row win area
-            if(cells[i].textContent.includes("A")){
+            if(cells[i].id.includes("A")){
                 row1.push(cells[i])
-                console.log(`Added ${cells[i].textContent} to row1 ${row1}`)
+                console.log(`Added ${cells[i].id} to row1 ${row1}`)
             }
-            if(cells[i].textContent.includes("B")){
+            if(cells[i].id.includes("B")){
                 row2.push(cells[i])
-                console.log(`Added ${cells[i].textContent} to row1 ${row2}`)
+                console.log(`Added ${cells[i].id} to row1 ${row2}`)
             }
-            if(cells[i].textContent.includes("C")){
+            if(cells[i].id.includes("C")){
                 row3.push(cells[i])
-                console.log(`Added ${cells[i].textContent} to row1 ${row3}`)
+                console.log(`Added ${cells[i].id} to row1 ${row3}`)
             }
             //Add column win area
-            if(cells[i].textContent.includes("1")){
+            if(cells[i].id.includes("1")){
                 col1.push(cells[i])
-                console.log(`Added ${cells[i].textContent} to row1 ${col1}`)
+                console.log(`Added ${cells[i].id} to row1 ${col1}`)
             }
-            if(cells[i].textContent.includes("2")){
+            if(cells[i].id.includes("2")){
                 col2.push(cells[i])
-                console.log(`Added ${cells[i].textContent} to row1 ${col2}`)
+                console.log(`Added ${cells[i].id} to row1 ${col2}`)
             }
-            if(cells[i].textContent.includes("3")){
+            if(cells[i].id.includes("3")){
                 col3.push(cells[i])
-                console.log(`Added ${cells[i].textContent} to row1 ${col3}`)
+                console.log(`Added ${cells[i].id} to row1 ${col3}`)
             }
             //Add diagonal win area
-            if(cells[i].textContent.includes("A1") || cells[i].textContent.includes("B2") || cells[i].textContent.includes("C3")){
+            if(cells[i].id.includes("A1") || cells[i].id.includes("B2") || cells[i].id.includes("C3")){
                 diag1.push(cells[i])
-                console.log(`Added ${cells[i].textContent} to row1 ${diag1}`)
+                console.log(`Added ${cells[i].id} to row1 ${diag1}`)
             }
-            if(cells[i].textContent.includes("C1") || cells[i].textContent.includes("B2") || cells[i].textContent.includes("A3")){
+            if(cells[i].id.includes("C1") || cells[i].id.includes("B2") || cells[i].id.includes("A3")){
                 diag2.push(cells[i])
-                console.log(`Added ${cells[i].textContent} to row1 ${diag2}`)
+                console.log(`Added ${cells[i].id} to row1 ${diag2}`)
             }
             winOptions.push(row1, row2, row3, col1, col2, col3, diag1, diag2)
             console.log({row1, row2, row3, col1, col2, col3, diag1, diag2})
@@ -93,7 +93,7 @@ const playerController = (
             //Turn handling
             cells[i].addEventListener("mousedown", (e) => {
                 var cell = cells[i];
-                if (cell.textContent != cell.id) {
+                if (cell.textContent != "") {
                     // Do nothing
                 } else {
                     const marking = (mark) => {
