@@ -1,6 +1,5 @@
 const gameBoard = (() => {
-    var gridContainer = document.createElement("div");
-    gridContainer.id = "gridContainer"
+    var gridContainer = document.getElementById("gridContainer");
     
     // Create an array of letters for the rows and columns
     var letters = ["A", "B", "C"];
@@ -13,7 +12,6 @@ const gameBoard = (() => {
             gridContainer.appendChild(cell);
             }
     }
-    document.body.appendChild(gridContainer)
     }
 
 );
