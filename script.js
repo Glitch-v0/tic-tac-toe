@@ -42,10 +42,13 @@ const playerController = (
                     });
                     console.log("Player with", mark, "has won on", option[0].classList);
                     setTimeout(() => {
-                        alert("Player " + (mark == "X" ? "One" : "Two") + " Wins!");
-                        document.getElementById("gridContainer").remove();
-                        gameBoard();
-                    }, 500);
+                        alert("Player " + (mark == "X" ? "One" : "Two") + " Wins! Player " + (mark == "X" ? "Two" : "One") + " starts now.");
+                        for(cell of cells){
+                            cell.textContent = cell.id;
+                            cell.style.backgroundColor = "white";
+                            cell.style.fontSize = "clamp(2rem, 5vw, 3.5rem)"
+                        }
+                    }, 400);
                     break
                 }
             }
