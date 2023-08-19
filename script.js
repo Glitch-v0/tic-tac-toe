@@ -21,6 +21,7 @@ const playerController = (
         gameBoard();
         var playerOneTurn = true;
         var playerTwoTurn = false;
+        var canClick = true;
         var cells = document.getElementsByClassName("gridCell");
         var col1 = [];
         var col2 = [];
@@ -39,6 +40,7 @@ const playerController = (
                         cell.style.backgroundColor = "var(--flash-color)"; // Highlight the winning cells
                     });
                     console.log("Player with", mark, "has won on", option[0].classList);
+                    canClick = false;
                     setTimeout(() => {
                         alert("Player " + (mark == "X" ? "One" : "Two") + " Wins! Player " + (mark == "X" ? "Two" : "One") + " starts now.");
                         for(cell of cells){
@@ -46,6 +48,7 @@ const playerController = (
                             cell.style.backgroundColor = "white";
                             cell.style.fontSize = "clamp(2rem, 5vw, 3.5rem)"
                         }
+                        canClick = true;
                     }, 400);
                     break
                 }
@@ -93,7 +96,7 @@ const playerController = (
             //Turn handling
             cells[i].addEventListener("mousedown", (e) => {
                 var cell = cells[i];
-                if (cell.textContent != "") {
+                if (cell.textContent != "" || canClick == false) {
                     // Do nothing
                 } else {
                     const marking = (mark) => {
