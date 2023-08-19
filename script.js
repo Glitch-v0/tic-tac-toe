@@ -16,10 +16,11 @@ const gameBoard = (() => {
     document.body.appendChild(gridContainer)
     }
 
-)();
+);
 
 const playerController = (
     () => {
+        gameBoard();
         var playerOneTurn = true;
         var playerTwoTurn = false;
         var cells = document.getElementsByClassName("gridCell");
@@ -42,9 +43,11 @@ const playerController = (
                     console.log("Player with", mark, "has won on", option[0].classList);
                     setTimeout(() => {
                         alert("Player " + (mark == "X" ? "One" : "Two") + " Wins!");
-                    }, 50); // Adjust the delay time as needed
+                        document.getElementById("gridContainer").remove();
+                        gameBoard();
+                    }, 500);
+                    break
                 }
-                break
             }
         }
         for (let i = 0; i < cells.length; i++) {
