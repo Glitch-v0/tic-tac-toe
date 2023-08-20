@@ -25,18 +25,19 @@ body {
     border: 4px solid var(--border-color);
     display: grid;
     place-items: center;
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(2rem, 7vw, 7rem);
+    background-color: white;
 }
 
 .gridCell:hover {
     background-color: #faebd7;
-    font-size: clamp(2.5rem, 6vw, 4.0rem);
+    font-size: clamp(2.5rem, 8vw, 8rem);
 }
 
-.gridCell.flash {
-    background-color: #d7faeb;
+.flash {
+    background-color: #d7faeb !important;
 }
 
-.gridCellReset {
-    background-color: white;
+.mark {
+    background-color: #ebd7fa79 !important;
 }

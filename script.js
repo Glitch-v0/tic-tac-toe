@@ -16,6 +16,29 @@ const gameBoard = (() => {
 
 );
 
+const gridCellFlash = (cells, duration, classToUse) => {
+    //console.log("flash function running")
+    if(Array.isArray(cells)) {
+        //console.log('used an array!')
+        for(let cell of cells){
+            cell.classList.add(classToUse);
+            //console.log(`added flash to ${cell.id}`)
+            setTimeout(() => {
+                cell.classList.remove(classToUse);
+                //console.log(`removed flash from ${cell.id}`)
+            }, duration);
+        }
+    } else {
+        //console.log("used a single cell!")
+        cells.classList.add(classToUse);
+        //console.log(`added flash to ${cells}`)
+            setTimeout(() => {
+                cells.classList.remove(classToUse);
+                //console.log(`removed flash from ${cells}`)
+            }, duration);  
+    }
+}
+
 const playerController = (
     () => {
         gameBoard();
@@ -29,25 +52,20 @@ const playerController = (
             //console.log("Checking for win...")
             const resetCells = (message) => {
                 canClick = false;
-                    setTimeout(() => {
-                        alert(`${message}`);
-                        for(let cell of cells){
-                            cell.textContent = "";
-                            cell.style.backgroundColor = "white";
-                            cell.style.fontSize = "clamp(2.5rem, 6vw, 3.5rem)";
-                        }
-                        canClick = true;
-                    }, 400);
+                alert(`${message}`);
+                for(let cell of cells){
+                    cell.textContent = "";
+                }
+                canClick = true;
             }
             for (const option of winOptions) {
                 if (option.every(cell => cell.textContent === mark)) {
-                    option.forEach(cell => {
-                        cell.style.backgroundColor = "var(--flash-color)"; // Highlight the winning cells
-                    });
-                    //console.log("Player with", mark, "has won on", option[0].classList);
                     canClick = false;
-                    resetCells("Player " + (mark == "X" ? "One" : "Two") + " Wins! Player " + (mark == "X" ? "Two" : "One") + " starts now.")
-                    break
+                    gridCellFlash(option, 900, "flash");
+                    //console.log("Player with", mark, "has won on", option[0].classList);
+                    setTimeout(() => {
+                        resetCells("Player " + (mark == "X" ? "One" : "Two") + " Wins! Player " + (mark == "X" ? "Two" : "One") + " starts now.")
+                    }, 900)
                 } else {
                     //console.log('No win yet.')
                 }
@@ -74,12 +92,8 @@ const playerController = (
                     // Do nothing
                 } else {
                     const marking = (mark) => {
-                        cell.classList.add("flash"); // Add the "flash" class
+                        gridCellFlash(cell, 50, "mark")
                         cell.textContent = mark;
-                        cell.style.fontSize = "6.5rem";
-                        setTimeout(() => {
-                            cell.classList.remove("flash"); // Remove the "flash" class
-                        }, 250); // Adjust the duration (in milliseconds) as needed
                     }
                     if(playerOneTurn){
                         marking("X");
@@ -95,8 +109,5 @@ const playerController = (
                 }
             })
         }
-        //Adds various cell groups to win conditions
         winOptions.push(row1, row2, row3, col1, col2, col3, diag1, diag2)
-        //console.log({row1, row2, row3, col1, col2, col3, diag1, diag2})
-        //console.log({winOptions})
     })()
