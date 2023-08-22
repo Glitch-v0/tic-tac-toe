@@ -1,10 +1,13 @@
 function playerSettings () {
     const greetingDialog = document.getElementById("greeting")
     const confirmButton = document.getElementById("confirmButton")
+    const newGameButton = document.getElementById("newGame")
     const p1NameDisplay = document.getElementById("p1NameDisplay")
     const p2NameDisplay = document.getElementById("p2NameDisplay")
     const p1ScoreDisplay = document.getElementById("p1ScoreDisplay")
     const p2ScoreDisplay = document.getElementById("p2ScoreDisplay")
+    let p1Score = 0
+    let p2Score = 0
     confirmButton.addEventListener("click", () => {
         const p1NameInput = document.getElementById("p1Name")
         const p2NameInput = document.getElementById("p2Name")
@@ -20,8 +23,14 @@ function playerSettings () {
         //console.log(greetingDialog)
         // Handle form submission or further actions here
     });
-    let p1Score = 0
-    let p2Score = 0
+    newGameButton.addEventListener("click", () => {
+        p1Score = 0;
+        p2Score = 0;
+        console.log({p1Score, p2Score})
+        p1ScoreDisplay.textContent = p1Score
+        p2ScoreDisplay.textContent = p2Score
+    })
+    
     return {p1Name, p2Name, p1Score, p2Score, p1NameDisplay, p2NameDisplay, p1ScoreDisplay, p2ScoreDisplay}
 }
 
