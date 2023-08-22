@@ -1,10 +1,18 @@
+function playerSettings () {
+    const p1Name = prompt("Player One: What is your name?")
+    const p2Name = prompt("Player Two: What is your name?")
+    let p1Score = 0
+    let p2Score = 0
+    return {p1Name, p2Name, p1Score, p2Score}
+}
+
 const gameBoard = (() => {
     var gridContainer = document.getElementById("gridContainer");
     
     // Create an array of letters for the rows and columns
     var letters = ["A", "B", "C"];
     for (var i = 0; i < 3; i++) {
-        for (var j = 0; j < 3; j++) {
+        for (var j = 0; j < 3; j++) { 
             var cell = document.createElement("div");
             cell.id = letters[i] + (j + 1);
             cell.className = "gridCell";
@@ -42,6 +50,7 @@ const gridCellFlash = (cells, duration, classToUse) => {
 const playerController = (
     () => {
         gameBoard();
+        var settings = playerSettings();
         var playerOneTurn = true;
         var playerTwoTurn = false;
         var canClick = true;
@@ -65,6 +74,8 @@ const playerController = (
                     //console.log("Player with", mark, "has won on", option[0].classList);
                     setTimeout(() => {
                         resetCells("Player " + (mark == "X" ? "One" : "Two") + " Wins! Player " + (mark == "X" ? "Two" : "One") + " starts now.")
+                        mark == "X" ? settings.p1Score++ : settings.p2Score++
+                        console.log(settings.p1Score, settings.p2Score)
                     }, 900)
                 } else {
                     //console.log('No win yet.')
