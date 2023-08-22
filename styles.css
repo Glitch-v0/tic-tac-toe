@@ -13,8 +13,8 @@ body {
 }
 
 #greeting[open] {
-    height: 83vh;
-    width: 83vh;
+    height: 95vh;
+    width: 95vh;
     opacity: 72%;
     display: grid;
 }
@@ -36,6 +36,17 @@ form > button {
     background-color: #ebd7fa;
 }
 
+#scoreContainerOuter {
+    display: flex;
+    width: 50%;
+    justify-content: space-around;
+    font-size: 2rem;
+}
+
+.scoreContainerInner {
+    display: flex;
+    gap: 20%;
+}
 #gridContainer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

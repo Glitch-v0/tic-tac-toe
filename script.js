@@ -1,15 +1,20 @@
 function playerSettings () {
-    const greetingDialog = document.getElementById("greeting");
-    const confirmButton = document.getElementById("confirmButton");
+    const greetingDialog = document.getElementById("greeting")
+    const confirmButton = document.getElementById("confirmButton")
+    const p1NameDisplay = document.getElementById("p1NameDisplay")
+    const p2NameDisplay = document.getElementById("p2NameDisplay")
+    const p1ScoreDisplay = document.getElementById("p1ScoreDisplay")
+    const p2ScoreDisplay = document.getElementById("p2ScoreDisplay")
     confirmButton.addEventListener("click", () => {
-        const p1NameInput = document.getElementById("p1Name");
-        const p2NameInput = document.getElementById("p2Name");
+        const p1NameInput = document.getElementById("p1Name")
+        const p2NameInput = document.getElementById("p2Name")
     
-        const p1Name = p1NameInput.value;
-        const p2Name = p2NameInput.value;
-    
-        console.log("Player 1's name:", p1Name);
-        console.log("Player 2's name:", p2Name);
+        const p1Name = p1NameInput.value
+        const p2Name = p2NameInput.value
+        p1NameDisplay.textContent = p1Name
+        p2NameDisplay.textContent = p2Name
+        console.log("Player 1's name:", p1Name)
+        console.log("Player 2's name:", p2Name)
     
         greetingDialog.close();
         //console.log(greetingDialog)
@@ -17,7 +22,7 @@ function playerSettings () {
     });
     let p1Score = 0
     let p2Score = 0
-    return {p1Name, p2Name, p1Score, p2Score}
+    return {p1Name, p2Name, p1Score, p2Score, p1NameDisplay, p2NameDisplay, p1ScoreDisplay, p2ScoreDisplay}
 }
 
 const gameBoard = (() => {
@@ -72,6 +77,8 @@ const playerController = (
         var [col1, col2, col3, row1, row2, row3, diag1, diag2, winOptions] = [[], [], [], [], [], [], [], [], []];
 
         const checkWin = (mark) => {
+            settings.p1Name = settings.p1NameDisplay.textContent
+            settings.p2Name = settings.p2NameDisplay.textContent
             //console.log("Checking for win...")
             const resetCells = (message) => {
                 canClick = false;
@@ -87,8 +94,10 @@ const playerController = (
                     gridCellFlash(option, 900, "flash");
                     //console.log("Player with", mark, "has won on", option[0].classList);
                     setTimeout(() => {
-                        resetCells("Player " + (mark == "X" ? "One" : "Two") + " Wins! Player " + (mark == "X" ? "Two" : "One") + " starts now.")
+                        resetCells((mark == "X" ? settings.p1Name : settings.p2Name) + " Wins! " + (mark == "X" ? settings.p2Name : settings.p1Name) + " starts this round.")
                         mark == "X" ? settings.p1Score++ : settings.p2Score++
+                        settings.p1ScoreDisplay.textContent = settings.p1Score
+                        settings.p2ScoreDisplay.textContent = settings.p2Score
                         console.log(`Score: ${settings.p1Name}: ${settings.p1Score}, ${settings.p2Name}: ${settings.p2Score}`)
                     }, 900)
                 } else {
