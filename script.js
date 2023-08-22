@@ -75,7 +75,7 @@ const playerController = (
                     setTimeout(() => {
                         resetCells("Player " + (mark == "X" ? "One" : "Two") + " Wins! Player " + (mark == "X" ? "Two" : "One") + " starts now.")
                         mark == "X" ? settings.p1Score++ : settings.p2Score++
-                        console.log(settings.p1Score, settings.p2Score)
+                        console.log(`Score: ${settings.p1Name}: ${settings.p1Score}, ${settings.p2Name}: ${settings.p2Score}`)
                     }, 900)
                 } else {
                     //console.log('No win yet.')
