@@ -1,6 +1,20 @@
 function playerSettings () {
-    const p1Name = prompt("Player One: What is your name?")
-    const p2Name = prompt("Player Two: What is your name?")
+    const greetingDialog = document.getElementById("greeting");
+    const confirmButton = document.getElementById("confirmButton");
+    confirmButton.addEventListener("click", () => {
+        const p1NameInput = document.getElementById("p1Name");
+        const p2NameInput = document.getElementById("p2Name");
+    
+        const p1Name = p1NameInput.value;
+        const p2Name = p2NameInput.value;
+    
+        console.log("Player 1's name:", p1Name);
+        console.log("Player 2's name:", p2Name);
+    
+        greetingDialog.close();
+        //console.log(greetingDialog)
+        // Handle form submission or further actions here
+    });
     let p1Score = 0
     let p2Score = 0
     return {p1Name, p2Name, p1Score, p2Score}

@@ -9,6 +9,17 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <dialog open id="greeting">
+        <form method="dialog">
+            <p>Ready for a game of Tic Tac Toe?</p>
+            <p>Enter the names below.</p>
+            <label for="p1Name">Player 1:</label>
+            <input type="text" id="p1Name" name="p1Name" placeholder="Fred">
+            <label for="p2Name">Player 2:</label>
+            <input type="text" id="p2Name" name="p2Name" placeholder="George">
+            <button id="confirmButton">Confirm</button>
+        </form>
+    </dialog>
     <div id="gridContainer">
         
     </div>
